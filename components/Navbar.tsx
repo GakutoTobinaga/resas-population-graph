@@ -3,7 +3,7 @@
 export default function Navbar() {
   return (
     <div>
-        <div>This is the navbar.</div>
+        <div className="navbar">Resas-population-graph Application</div>
     </div>
   )
 }
