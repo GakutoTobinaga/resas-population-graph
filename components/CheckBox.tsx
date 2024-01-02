@@ -1,10 +1,9 @@
-
-
-export default function CheckBox() {
-    
+"use client"
+export default function CheckBox({ prefectureName }: { prefectureName: string }) {
     return (
-      <div className="PrefectureTile">
-          都道府県
+      <div className="CheckBox">
+        <input type="checkbox" />
+        {prefectureName}
       </div>
     )
   }

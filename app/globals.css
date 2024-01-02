@@ -135,3 +135,55 @@ a {
   border-radius: 8px; /* 角丸にする */
   color: #000;
 }
+
+.CheckBox {
+  font-size: 30px;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative; /* Ensure the container has a relative position */
+}
+
+.CheckBox input {
+  margin-right: 10px;
+}
+
+/* Normal, unchecked state */
+.CheckBox input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #000;
+  border-radius: 0px;
+  outline: none;
+  margin-right: 8px;
+  position: relative; /* Adding relative positioning */
+}
+
+/* Checked state */
+.CheckBox input[type="checkbox"]:checked {
+  background-color: #000000;
+  border-color: #000;
+}
+
+.CheckBox input[type="checkbox"]:checked::after {
+  position: absolute;
+  top: 1px;
+  left: 5px;
+  display: block;
+  border-right: 2px solid rgb(255, 255, 255); 
+  border-bottom: 2px solid rgb(255, 255, 255); 
+  content: '';
+  width: 5px; 
+  height: 10px;
+  transform: rotate(45deg);
+}
+
+/* Checkbox label text */
+.CheckBox label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  color: rgb(0, 172, 60);
+}
