@@ -4,6 +4,7 @@ export type Prefecture = {
   };
   
 export type PrefectureData = {
+    statusCode: any;
     message: null | string;
     result: Prefecture[];
   };
