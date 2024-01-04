@@ -1,13 +1,14 @@
 "use client"
 // dataをfetchして、(各都道府県データ)個々のcheckboxに入れて表示
 import React, { useState, useEffect } from 'react';
-import CheckBox from "./CheckBox";
+import { CheckBox } from './CheckBox';
 import { fetchPrefectures, fetchPopulationDataByPref } from '@/lib/actions';
 import { PrefectureData } from "@/lib/types";
 
 export default function GroupCheckBox() {
   const [data, setData] = useState<PrefectureData>({ statusCode: null, result: [], message: "" });
-  const [selectedPrefectures, setSelectedPrefectures] = useState<string[]>([]);
+  const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
+  const [canAdd, setCanAdd] = useState<boolean>(true);
   // useEffectでページが読み込まれるときに都道府県名をフェッチ
   useEffect(() => {
     const fetchData = async () => {
@@ -31,15 +32,23 @@ export default function GroupCheckBox() {
     console.log("Selected Prefectures:", selectedPrefectures);
   }, [selectedPrefectures]);
 
-  const handleCheckboxChange = (prefName: string) => (checked: boolean) => {
+  const handleCheckboxChange = (prefName: string, prefCode: number) => (checked: boolean) => {
     setSelectedPrefectures((prev) => {
       if (checked) {
-        return [...prev, prefName];
+        // 配列の長さが2未満の場合のみ、新しい要素を追加
+        if (prev.length < 2) {
+          return [...prev, [prefName, prefCode]];
+        } else {
+          // すでに2つの要素がある場合は、何も追加せずに現在の状態を維持
+          return prev;
+        }
       } else {
-        return prev.filter((name) => name !== prefName);
+        // チェックが解除された場合は、該当する要素を削除
+        return prev.filter((name) => name[0] !== prefName);
       }
     });
   };
+  
 
   if (!data || !data.result ) {
     if (data.statusCode) {
@@ -55,13 +64,13 @@ export default function GroupCheckBox() {
         <CheckBox
           key={prefecture.prefCode}
           prefectureName={prefecture.prefName}
-          onChange={handleCheckboxChange(prefecture.prefName)}
+          onChange={handleCheckboxChange(prefecture.prefName, prefecture.prefCode)}
+          disabled={selectedPrefectures.length >= 2 && !selectedPrefectures.some(item => item[0] === prefecture.prefName)}
         />
       ))}
     </div>
   );
 }
-
 /*
 export default async function GroupCheckBox() {
     const data: PrefectureData = await fetchPrefectures();
