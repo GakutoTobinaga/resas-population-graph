@@ -1,14 +1,13 @@
 "use client"
 // dataをfetchして、(各都道府県データ)個々のcheckboxに入れて表示
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CheckBox } from './CheckBox';
 import { fetchPrefectures, fetchPopulationDataByPref } from '@/lib/actions';
-import { PrefectureData } from "@/lib/types";
+import { GroupCheckBoxProps, PrefectureData, PrefecturePopulationData } from "@/lib/types";
 
-export default function GroupCheckBox() {
+export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectures }: GroupCheckBoxProps) {
   const [data, setData] = useState<PrefectureData>({ statusCode: null, result: [], message: "" });
-  const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
-  const [canAdd, setCanAdd] = useState<boolean>(true);
+  // const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
   // useEffectでページが読み込まれるときに都道府県名をフェッチ
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +28,21 @@ export default function GroupCheckBox() {
   }, []);
 
   useEffect(() => {
+    const fetchPrefData = async () => {
+      console.log("OK")
+      if (selectedPrefectures.length > 0) {
+        let lastSelected = selectedPrefectures[selectedPrefectures.length - 1];
+        console.log("Newly added prefecture code:", lastSelected[1]);
+        try {
+          const prefData = await fetchPopulationDataByPref(lastSelected[1])
+          console.log(prefData)
+        } catch (error){
+          console.error("Error: fetchPopulationDataByPref");
+        } finally {
+          console.log("Finally: fetchPopulationDataByPref")
+        }
+    }
+    }
     console.log("Selected Prefectures:", selectedPrefectures);
   }, [selectedPrefectures]);
 
