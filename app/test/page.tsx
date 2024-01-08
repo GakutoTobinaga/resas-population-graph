@@ -1,55 +1,80 @@
 "use client"
 import React from 'react';
+import styles from '../page.module.css'
 import GroupCheckBox from '@/components/GroupCheckBox';
 import { fetchPopulationDataByPref } from '@/lib/actions';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 import { ChartBox } from '@/components/ChartBox';
 import { PopulationCategory, PrefecturePopulationData, PopulationData, GroupCheckBoxProps } from '@/lib/types';
 import { TotalChartBox } from '@/components/popChartBoxes/TotalChartBox';
+import { AgedChartBox } from '@/components/popChartBoxes/AgedChartBox';
 import { useState, useEffect } from 'react';
+import { PrefectureNames, LabelAndRawDatas } from '@/lib/types';
+import { YoungChartBox } from '@/components/popChartBoxes/YoungChartBox';
+import { WorkingChartBox } from '@/components/popChartBoxes/WorkingAgeChartBox';
+import { RawDataPair } from '@/components/popChartBoxes/YoungChartBox';
 
 function MyComponent() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
-  const [totalpopdata, settotalpopdata] = useState<PopulationCategory | undefined>(undefined);
-  const [prefectureNameA, setPrefectureNameA] = useState<string | undefined>(undefined);
-  console.log("My compo" + selectedPrefectures)
-  const years2 = ['1980', '1990', '2000', '2010', '2020']
+  // const [selectedChart, setSelectedChart] = useState('total'); // 初期値は'total'
+  const [prefectureNames, setPrefectureNames] = useState<PrefectureNames>({ prefectureNameA: undefined, prefectureNameB: undefined });
+  const [totalRawDatas, setTotalRawDatas] = useState<LabelAndRawDatas>({label: "総人口", dataA: undefined, dataB: undefined})
+  const [agedRawDatas, setAgedRawDatas] = useState<LabelAndRawDatas>({label: "老年人口", dataA: undefined, dataB: undefined})
+  const [youngRawDatas, setYoungRawDatas] = useState<LabelAndRawDatas>({label: "年少人口", dataA: undefined, dataB: undefined})
+  const [workingRawDatas, setWorkingRawDatas] = useState<LabelAndRawDatas>({label: "生産年齢人口", dataA: undefined, dataB: undefined})
+  const years: number[] = [1980, 1990, 2000, 2010, 2020]
+
+  console.log(selectedPrefectures)
   useEffect(() => {
     const fetchData = async () => {
       let A : number | undefined = undefined;
       let B : number | undefined = undefined;
-      if (selectedPrefectures.length >= 1) {
+      if (selectedPrefectures.length == 1) {
         A = selectedPrefectures[0][1]; // 1番目の都道府県コード
-        setPrefectureNameA(selectedPrefectures[0][0])
+        setPrefectureNames(prevNames => ({ ...prevNames, prefectureNameA: selectedPrefectures[0][0] }));
         const dataA: PrefecturePopulationData = await fetchPopulationDataByPref(A);
-        const totalPopulationCategory : PopulationCategory | undefined = dataA.result.data.find(category => category.label === "総人口");
-        settotalpopdata(totalPopulationCategory)
-        const youngPopulationCategory : PopulationCategory | undefined = dataA.result.data.find(category => category.label === "年少人口");
-        const workingAgePopulationCategory : PopulationCategory | undefined = dataA.result.data.find(category => category.label === "生産年齢人口");
-        const agedPopulationCategory : PopulationCategory | undefined = dataA.result.data.find(category => category.label === "老年人口");
+        setTotalRawDatas(prevNames => ({ ...prevNames, dataA:  dataA.result.data.find(category => category.label === "総人口")}))
+        setYoungRawDatas(prevNames => ({ ...prevNames, dataA:  dataA.result.data.find(category => category.label === "年少人口")}))
+        setAgedRawDatas(prevNames => ({ ...prevNames, dataA:  dataA.result.data.find(category => category.label === "老年人口")}))
+        setWorkingRawDatas(prevNames => ({ ...prevNames, dataA:  dataA.result.data.find(category => category.label === "生産年齢人口")}))
+        // console.log(dataA.result.data.find(category => category.label === "生産年齢人口"))
+        // console.log(dataA.result.data.find(category => category.label === "老年人口"))
       }
       if (selectedPrefectures.length >= 2) {
+        console.log("in B :" + prefectureNames)
+        console.log("選択された数: " + selectedPrefectures)
         B = selectedPrefectures[1][1]; // 2番目の都道府県コード
+        console.log(B)
+        setPrefectureNames(prevNames => ({ ...prevNames, prefectureNameB: selectedPrefectures[1][0] }));
         const dataB: PrefecturePopulationData = await fetchPopulationDataByPref(B);
+        setTotalRawDatas(prevNames => ({ ...prevNames, dataB:  dataB.result.data.find(category => category.label === "総人口")}))
+        setTotalRawDatas(prevNames => ({ ...prevNames, dataB:  dataB.result.data.find(category => category.label === "総人口")}))
+        setYoungRawDatas(prevNames => ({ ...prevNames, dataB:  dataB.result.data.find(category => category.label === "年少人口")}))
+        setAgedRawDatas(prevNames => ({ ...prevNames, dataB:  dataB.result.data.find(category => category.label === "老年人口")}))
+        setWorkingRawDatas(prevNames => ({ ...prevNames, dataB:  dataB.result.data.find(category => category.label === "生産年齢人口")}))
       }
-      /*
-      console.log("use effect")
-      const totalPopulationCategory : PopulationCategory | undefined = dataA.result.data.find(category => category.label === "総人口");
-      settotalpopdata(totalPopulationCategory)
-      const youngPopulationCategory : PopulationCategory | undefined = data.result.data.find(category => category.label === "年少人口");
-      const workingAgePopulationCategory : PopulationCategory | undefined = data.result.data.find(category => category.label === "生産年齢人口");
-      const agedPopulationCategory : PopulationCategory | undefined = data.result.data.find(category => category.label === "老年人口");
-      */
     }
     fetchData();
   }, [selectedPrefectures])
-  // <TotalChartBox prefectureName = "愛知県" populationCategory = {totalPopulationCategory}/>
-  // fetchPrefectures 関数をコンポーネント内で定義
-  // 一番でかいデータをとって、カテゴリごとにコンポーネントを作ってそれぞれに分配する 都道府県名はいらないかも？
+
+  if (!prefectureNames.prefectureNameA && !prefectureNames.prefectureNameB) {
+    return (
+      <div>
+        <GroupCheckBox selectedPrefectures={selectedPrefectures} setSelectedPrefectures={setSelectedPrefectures} />
+        <div>都道府県を選択してください。</div>
+      </div>
+    );
+  }
+
   return (
     <div>
-        <GroupCheckBox selectedPrefectures={selectedPrefectures} setSelectedPrefectures={setSelectedPrefectures} />
-        <TotalChartBox prefectureName = {prefectureNameA} populationCategory = {totalpopdata}/>
+      <GroupCheckBox selectedPrefectures={selectedPrefectures} setSelectedPrefectures={setSelectedPrefectures} />
+      <div>
+        <TotalChartBox prefectureNames={prefectureNames} labelAndRawDatas={totalRawDatas} />
+        <AgedChartBox prefectureNames={prefectureNames} labelAndRawDatas={agedRawDatas} />
+        <YoungChartBox prefectureNames={prefectureNames} labelAndRawDatas={youngRawDatas} />
+        <WorkingChartBox prefectureNames={prefectureNames} labelAndRawDatas={workingRawDatas} />
+      </div>
     </div>
   );
 }

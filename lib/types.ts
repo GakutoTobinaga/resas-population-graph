@@ -32,3 +32,19 @@ export interface GroupCheckBoxProps {
     selectedPrefectures: [string, number][];
     setSelectedPrefectures: React.Dispatch<React.SetStateAction<[string, number][]>>;
   }
+
+export type PrefectureNames = {
+  prefectureNameA: string | undefined;
+  prefectureNameB: string | undefined;
+}
+
+export type PrefectureDatas = {
+  prefectureDataA: PopulationData[];
+  prefectureDataB: PopulationData[];
+}
+
+export type LabelAndRawDatas = {
+  label: string | undefined;
+  dataA: PopulationCategory | undefined;
+  dataB: PopulationCategory | undefined;
+}

@@ -26,20 +26,20 @@ export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectu
     };
     fetchData();
   }, []);
-
+  
+// for debugging
   useEffect(() => {
     const fetchPrefData = async () => {
-      console.log("OK")
       if (selectedPrefectures.length > 0) {
         let lastSelected = selectedPrefectures[selectedPrefectures.length - 1];
-        console.log("Newly added prefecture code:", lastSelected[1]);
+        // console.log("Newly added prefecture code:", lastSelected[1]);
         try {
-          const prefData = await fetchPopulationDataByPref(lastSelected[1])
-          console.log(prefData)
+          // const prefData = await fetchPopulationDataByPref(lastSelected[1])
+          // console.log(prefData)
         } catch (error){
-          console.error("Error: fetchPopulationDataByPref");
+          // console.error("Error: fetchPopulationDataByPref");
         } finally {
-          console.log("Finally: fetchPopulationDataByPref")
+          // console.log("Finally: fetchPopulationDataByPref")
         }
     }
     }

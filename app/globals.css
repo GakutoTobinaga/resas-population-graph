@@ -187,3 +187,15 @@ a {
   margin-bottom: 10px;
   color: rgb(0, 172, 60);
 }
+
+.GroupCheckBox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* 間隔を設定 */
+  justify-content: center; /* これで要素を中央に揃えます */
+}
+
+.CheckBox {
+  flex: 1 0 22%; /* 同上 */
+  margin: 5px; /* 同上 */
+}

@@ -1,13 +1,67 @@
+import React, { useState, useEffect } from 'react';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { PrefectureNames} from '@/lib/types'; // Replace with your actual import path
+import { RawDataPair } from './popChartBoxes/YoungChartBox';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+export const ChartBox = ({ prefectureNames, mainDatas }: { prefectureNames: PrefectureNames, mainDatas: RawDataPair }) => {
+    const [datasets, setDatasets] = useState<any>([]);
+    const years = [1980, 1990, 2000, 2010, 2020];
+    
+    useEffect(() => {
+        let newDatasets = [];
+
+        if (prefectureNames.prefectureNameA && mainDatas.dataA) {
+            const valuesA = years.map(year => mainDatas.dataA?.find(data => data.year === year)?.value ?? null);
+            newDatasets.push({
+                label: prefectureNames.prefectureNameA,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(0, 175, 240)',
+                borderWidth: 3,
+                hoverBackgroundColor: 'rgba(255, 99, 132, 0.4)',
+                hoverBorderColor: 'rgba(255, 99, 132, 1)',
+                data: valuesA,
+            });
+        }
+
+        if (prefectureNames.prefectureNameB && mainDatas.dataB) {
+            const valuesB = years.map(year => mainDatas.dataB?.find(data => data.year === year)?.value ?? null);
+            newDatasets.push({
+                label: prefectureNames.prefectureNameB,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(100, 0, 240)',
+                borderWidth: 3,
+                hoverBackgroundColor: 'rgba(255, 99, 132, 0.4)',
+                hoverBorderColor: 'rgba(255, 99, 132, 1)',
+                data: valuesB,
+            });
+        }
+
+        setDatasets(newDatasets);
+    }, [prefectureNames, mainDatas]);
+
+    const chartData = {
+        labels: years,
+        datasets: datasets,
+    };
+
+    return <Line data={chartData} />;
+};
+
+/*
 "use client"
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-import { PrefectureData, PopulationData } from '@/lib/types';
+import { PrefectureData, PopulationData, PrefectureNames } from '@/lib/types';
 import { Poor_Story } from 'next/font/google';
 import { disconnect } from 'process';
+import { RawDataPair } from './popChartBoxes/YoungChartBox';
+import { useState, useEffect } from 'react';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-  
 type PopulationCategory = {
     label: string;
     data: PopulationData[];
@@ -20,56 +74,84 @@ type PrefecturePopulationData = {
       data: PopulationCategory[];
     };
   };
-  
 
   // population dataを選択されたラベルに基づいて入れる
   // どこまで分解したデータを入れるか？→ カテゴリまで
-export const ChartBox = (
-    {prefectureName, populationCategory}
+  // labelを剥がされたyearとvalue, rateだけのデータ（A,B）を受け取る。（まだない）
+export const ChartBoxForTotal = (
+    {prefectureNames, mainDatas}
     : 
-    {prefectureName: string, populationCategory: PopulationCategory | any}) => {
-    //const dataValues = years.map(year => {
-        // const dataPoint = populationData.find(data => data.year === year);
-        // return dataPoint ? dataPoint.value : null;
-     // });
-    if (populationCategory) {
-    const popData: PopulationData[] = populationCategory.data
+    {prefectureNames: PrefectureNames, mainDatas: RawDataPair}) => {
+    const [datasets, setDatasets] = useState<any>([]);
     const years: number[] = [1980, 1990, 2000, 2010, 2020]
-    const valuesForYears = years.map(year => {
-        const dataPoint = popData.find(data => data.year === year);
-        return dataPoint ? dataPoint.value : null;
-      });
-    // rateが含まれているのかをチェック
-    const hasRate = popData.some(data => data.rate !== undefined);
-    if (hasRate) {
-        // rate用のチャートを追加... (optional)
-    } else {
-        // 同上
-    }
-    console.log(popData)
-    console.log(valuesForYears)
-
-    const data = {
-        labels: ['1980', '1990', '2000', '2010', '2020'], // 何年
-        datasets: [
-          {
-            label: prefectureName,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgba(0, 175, 240)',
-            borderWidth: 3,
-            hoverBackgroundColor: 'rgba(255, 99, 132, 0.4)',
-            hoverBorderColor: 'rgba(255, 99, 132, 1)',
-            data: valuesForYears, // 実際の値
-          },
-        ],
-      };
-    return <Line data={data} />;
-    } else {
-        return <div>this component is undefined.</div>
-    }
+    if (mainDatas) {
+    //　表示する年を設定.
+    useEffect(() => {
+      if (!prefectureNames.prefectureNameA && !prefectureNames.prefectureNameB) {
+        setDatasets([]);
+        return;
+      }
+    
+      let newDatasets : any = [];
+    
+      
+      if (prefectureNames.prefectureNameA && mainDatas.dataA) {
+        const valuesForYearsA = years.map(year => mainDatas.dataA?.find(data => data.year === year)?.value ?? null);
+        newDatasets.push({
+          label: prefectureNames.prefectureNameA,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(0, 175, 240)',
+          borderWidth: 3,
+          hoverBackgroundColor: 'rgba(255, 99, 132, 0.4)',
+          hoverBorderColor: 'rgba(255, 99, 132, 1)',
+          data: valuesForYearsA, // 実際の値
+        });
+        console.log(valuesForYearsA)
+      } else {
+        // 都道府県Aに関連するデータセットの削除
+        newDatasets = newDatasets.filter(dataset => dataset.label !== prefectureNames.prefectureNameB);
+      }
+      if (prefectureNames.prefectureNameB && mainDatas.dataB) {
+        const valuesForYearsB = years.map(year => mainDatas.dataB?.find(data => data.year === year)?.value ?? null);
+        newDatasets.push({
+          label: prefectureNames.prefectureNameB,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(100, 0, 240)',
+          borderWidth: 3,
+          hoverBackgroundColor: 'rgba(255, 99, 132, 0.4)',
+          hoverBorderColor: 'rgba(255, 99, 132, 1)',
+          data: valuesForYearsB, // 実際の値
+        });
+        console.log(valuesForYearsB)
+      } else {
+        // 都道府県Aに関連するデータセットの削除
+        newDatasets = newDatasets.filter(dataset => dataset.label !== prefectureNames.prefectureNameA);
+      }
+      // Create an array for new datasets based on provided data
+      
+      // Logic to create datasets for prefectureNameA and prefectureNameB
+      // similar to your existing code...
+      console.log(newDatasets)
+      newDatasets = newDatasets.slice(0, 2);
+      setDatasets(newDatasets);
+      console.log(newDatasets)
+      newDatasets = newDatasets.filter(dataset => 
+        dataset.label === prefectureNames.prefectureNameA || 
+        dataset.label === prefectureNames.prefectureNameB
+      );
+    }, [prefectureNames, mainDatas]); // Depend on prefectureNames and mainDatas
+    const chartData = {
+      labels: years,
+      datasets: datasets,
+    };
+    return <Line data={chartData} />;
+  } else {
+    console.log("Nothing at chartbox")
+    return <div>this component is undefined, couldn't receive some datas at ChartBoxForTotal.box component.</div>
+  }
 };
 
-/* 例
+
 const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June'],
   datasets: [
