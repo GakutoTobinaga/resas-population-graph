@@ -193,9 +193,25 @@ a {
   flex-wrap: wrap;
   gap: 10px; /* 間隔を設定 */
   justify-content: center; /* これで要素を中央に揃えます */
+  margin-bottom: 200px;
 }
 
 .CheckBox {
   flex: 1 0 22%; /* 同上 */
   margin: 5px; /* 同上 */
+}
+
+.Checkbox-disabled {
+  background-color: #ccc; /* 灰色 */
+  color: #666; /* 文字色も変更する場合 */
+  cursor: not-allowed; /* カーソルを禁止マークに変更 */
+}
+
+
+.MessageInSelectedPrefecture {
+  margin-bottom: 200px;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
 }

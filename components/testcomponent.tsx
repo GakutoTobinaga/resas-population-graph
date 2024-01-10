@@ -10,7 +10,7 @@ import { PrefectureNames, LabelAndRawDatas } from '@/lib/types';
 import { YoungChartBox } from '@/components/popChartBoxes/YoungChartBox';
 import { WorkingChartBox } from '@/components/popChartBoxes/WorkingAgeChartBox';
 
-export function MyComponent() {
+export function TestComponent() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
   // const [selectedChart, setSelectedChart] = useState('total'); // 初期値は'total'
   const [prefectureNames, setPrefectureNames] = useState<PrefectureNames>({ prefectureNameA: undefined, prefectureNameB: undefined });
@@ -52,11 +52,20 @@ export function MyComponent() {
     fetchData();
   }, [selectedPrefectures])
 
+  const resetAll = () => {
+    setSelectedPrefectures([]);
+    setPrefectureNames({ prefectureNameA: undefined, prefectureNameB: undefined });
+    setTotalRawDatas({label: "総人口", dataA: undefined, dataB: undefined});
+    setAgedRawDatas({label: "老年人口", dataA: undefined, dataB: undefined});
+    setYoungRawDatas({label: "年少人口", dataA: undefined, dataB: undefined});
+    setWorkingRawDatas({label: "生産年齢人口", dataA: undefined, dataB: undefined});
+  };
+
   if (!prefectureNames.prefectureNameA && !prefectureNames.prefectureNameB) {
     return (
       <div>
         <GroupCheckBox selectedPrefectures={selectedPrefectures} setSelectedPrefectures={setSelectedPrefectures} />
-        <div>都道府県を選択してください。</div>
+        <div className="MessageInSelectedPrefecture">都道府県を選択してください。</div>
       </div>
     );
   }
@@ -65,6 +74,7 @@ export function MyComponent() {
     <div>
       <GroupCheckBox selectedPrefectures={selectedPrefectures} setSelectedPrefectures={setSelectedPrefectures} />
       <div>
+      <button onClick={resetAll}>リセット</button>
         <TotalChartBox prefectureNames={prefectureNames} labelAndRawDatas={totalRawDatas} />
         <AgedChartBox prefectureNames={prefectureNames} labelAndRawDatas={agedRawDatas} />
         <YoungChartBox prefectureNames={prefectureNames} labelAndRawDatas={youngRawDatas} />
@@ -74,4 +84,4 @@ export function MyComponent() {
   );
 }
 
-export default MyComponent;
+export default TestComponent;

@@ -2,8 +2,8 @@
 // dataをfetchして、(各都道府県データ)個々のcheckboxに入れて表示
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckBox } from './CheckBox';
-import { fetchPrefectures, fetchPopulationDataByPref } from '@/lib/actions';
-import { GroupCheckBoxProps, PrefectureData, PrefecturePopulationData } from "@/lib/types";
+import { fetchPrefectures } from '@/lib/actions';
+import { GroupCheckBoxProps, PrefectureData } from "@/lib/types";
 
 export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectures }: GroupCheckBoxProps) {
   const [data, setData] = useState<PrefectureData>({ statusCode: null, result: [], message: "" });
@@ -80,6 +80,7 @@ export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectu
           prefectureName={prefecture.prefName}
           onChange={handleCheckboxChange(prefecture.prefName, prefecture.prefCode)}
           disabled={selectedPrefectures.length >= 2 && !selectedPrefectures.some(item => item[0] === prefecture.prefName)}
+          checked={selectedPrefectures.some(item => item[0] === prefecture.prefName)}
         />
       ))}
     </div>

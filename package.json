@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-chartjs-2": "^2.5.7",
     "chart.js": "^4.4.1",
     "next": "14.0.4",
     "node-fetch": "^3.3.2",
