@@ -10,18 +10,15 @@ import { PrefectureNames, LabelAndRawDatas } from '@/lib/types';
 import { YoungChartBox } from '@/components/popChartBoxes/YoungChartBox';
 import { WorkingChartBox } from '@/components/popChartBoxes/WorkingAgeChartBox';
 
-export function TestComponent() {
+export function ConnectComponent() {
   const [selectedCategory, setSelectedCategory] = useState('総人口');
   const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
-  // const [selectedChart, setSelectedChart] = useState('total'); // 初期値は'total'
   const [prefectureNames, setPrefectureNames] = useState<PrefectureNames>({ prefectureNameA: undefined, prefectureNameB: undefined });
   const [totalRawDatas, setTotalRawDatas] = useState<LabelAndRawDatas>({label: "総人口", dataA: undefined, dataB: undefined})
   const [agedRawDatas, setAgedRawDatas] = useState<LabelAndRawDatas>({label: "老年人口", dataA: undefined, dataB: undefined})
   const [youngRawDatas, setYoungRawDatas] = useState<LabelAndRawDatas>({label: "年少人口", dataA: undefined, dataB: undefined})
   const [workingRawDatas, setWorkingRawDatas] = useState<LabelAndRawDatas>({label: "生産年齢人口", dataA: undefined, dataB: undefined})
-  const years: number[] = [1980, 1990, 2000, 2010, 2020]
 
-  console.log(selectedPrefectures)
   useEffect(() => {
     const fetchData = async () => {
       let A : number | undefined = undefined;
@@ -34,8 +31,6 @@ export function TestComponent() {
         setYoungRawDatas(prevNames => ({ ...prevNames, dataA:  dataA.result.data.find(category => category.label === "年少人口")}))
         setAgedRawDatas(prevNames => ({ ...prevNames, dataA:  dataA.result.data.find(category => category.label === "老年人口")}))
         setWorkingRawDatas(prevNames => ({ ...prevNames, dataA:  dataA.result.data.find(category => category.label === "生産年齢人口")}))
-        // console.log(dataA.result.data.find(category => category.label === "生産年齢人口"))
-        // console.log(dataA.result.data.find(category => category.label === "老年人口"))
       }
       if (selectedPrefectures.length >= 2) {
         console.log("in B :" + prefectureNames)
@@ -103,4 +98,4 @@ export function TestComponent() {
   );
 }
 
-export default TestComponent;
+export default ConnectComponent;

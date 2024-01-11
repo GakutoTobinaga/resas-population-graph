@@ -12,7 +12,6 @@ import { WorkingChartBox } from '@/components/popChartBoxes/WorkingAgeChartBox';
 
 export function MyComponent() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
-  // const [selectedChart, setSelectedChart] = useState('total'); // 初期値は'total'
   const [prefectureNames, setPrefectureNames] = useState<PrefectureNames>({ prefectureNameA: undefined, prefectureNameB: undefined });
   const [totalRawDatas, setTotalRawDatas] = useState<LabelAndRawDatas>({label: "総人口", dataA: undefined, dataB: undefined})
   const [agedRawDatas, setAgedRawDatas] = useState<LabelAndRawDatas>({label: "老年人口", dataA: undefined, dataB: undefined})

@@ -316,3 +316,120 @@ a {
 .select-style:hover {
   border-color: #007bff;
 }
+
+/* スマートフォン向けのスタイル */
+@media (max-width: 768px) {
+  /* ここにスマートフォン向けのスタイルを追加 */
+  body {
+    font-size: 16px; /* フォントサイズを調整 */
+  }
+
+  .navbar {
+    height: 60px; /* ナビゲーションバーの高さを調整 */
+    font-size: 24px; /* ナビゲーションバーのフォントサイズを調整 */
+    margin-bottom: 20px; /* ナビゲーションバーとコンテンツの間隔を調整 */
+  }
+
+  .PrefectureTile {
+    font-size: 20px; /* プレフェクチャータイルのフォントサイズを調整 */
+    width: 30%; /* 幅を100%に設定して、スマートフォンの画面に合わせる */
+    margin: 20px 0; /* プレフェクチャータイルの上下のマージンを調整 */
+    justify-content: center;
+  }
+
+  .CheckBox {
+    font-size: 18px; /* チェックボックスのフォントサイズを調整 */
+    margin-bottom: 20px; /* チェックボックスと次の要素の間隔を調整 */
+  }
+
+  .ResetButton {
+    font-size: 20px; /* リセットボタンのフォントサイズを調整 */
+  }
+
+  .Button-wrap-center,
+  .Button-wrap-chart {
+    margin: 20px 0; /* ボタンラップの上下のマージンを調整 */
+  }
+
+  .select-style {
+    font-size: 16px; /* セレクトボックスのフォントサイズを調整 */
+  }
+
+  .MessageInSelectedPrefecture {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    font-family: "Gill Sans", sans-serif;
+    font-size: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  /* ResetButtonをスマートフォン用に調整 */
+  .ResetButton {
+    background-color: #4CAF50; /* 緑色の背景 */
+    color: white; /* 白色のテキスト */
+    padding: 10px 20px; /* 上下と左右のパディングを調整 */
+    text-align: center; /* テキストを中央寄せ */
+    text-decoration: none; /* テキストの装飾をなしに */
+    display: inline-block; /* インラインブロック要素として表示 */
+    font-size: 18px; /* フォントサイズを調整 */
+    margin: 10px 0; /* 上下のマージンを調整 */
+    margin-left: 10px;
+    cursor: pointer; /* カーソルをポインターに */
+    border: none; /* 枠線なし */
+    border-radius: 8px; /* 角を丸く */
+  }
+
+  .ResetButton:hover {
+    background-color: #45a049; /* ホバー時の背景色を少し暗く */
+  }
+
+  /* Button-wrap-centerをスマートフォン用に調整 */
+  .Button-wrap-center {
+    margin-top: 20px; /* 上部のマージンを調整 */
+    margin-bottom: 20px; /* 下部のマージンを調整 */
+    font-family: "Gill Sans", sans-serif;
+    font-size: 24px; /* フォントサイズを調整 */
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Button-wrap-chartをスマートフォン用に調整 */
+  .Button-wrap-chart {
+    margin-top: 20px; /* 上部のマージンを調整 */
+    margin-bottom: 40px; /* 下部のマージンを調整 */
+  }
+
+  /* select-styleをスマートフォン用に調整 */
+  .select-style {
+    padding: 10px 15px; /* 上下のパディングを調整 */
+    font-size: 16px; /* フォントサイズを調整 */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+    margin: 10px 0; /* 上下のマージンを調整 */
+    margin-right: 10px;
+  }
+
+  .select-style:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.1rem rgba(0,123,255,.25); /* フォーカス時の影を調整 */
+  }
+
+  .select-style:hover {
+    border-color: #007bff;
+  }
+
+  .label {
+    font-size: 15px;
+    font-family: "Gill Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 10px; /* 同上 */
+  }
+
+}

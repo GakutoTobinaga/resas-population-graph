@@ -1,7 +1,7 @@
 "use client"
 import styles from './page.module.css'
 import { useState } from 'react';
-import TestComponent from '@/components/testcomponent';
+import TestComponent from '@/components/ConnectComponent';
 
 export default function Home() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
