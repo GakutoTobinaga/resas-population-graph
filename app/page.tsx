@@ -1,7 +1,5 @@
 "use client"
 import styles from './page.module.css'
-import GroupCheckBox from '@/components/GroupCheckBox'
-import { ChartBox } from '@/components/ChartBox'
 import { useState } from 'react';
 import TestComponent from '@/components/testcomponent';
 

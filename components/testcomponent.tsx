@@ -11,6 +11,7 @@ import { YoungChartBox } from '@/components/popChartBoxes/YoungChartBox';
 import { WorkingChartBox } from '@/components/popChartBoxes/WorkingAgeChartBox';
 
 export function TestComponent() {
+  const [selectedCategory, setSelectedCategory] = useState('総人口');
   const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
   // const [selectedChart, setSelectedChart] = useState('total'); // 初期値は'total'
   const [prefectureNames, setPrefectureNames] = useState<PrefectureNames>({ prefectureNameA: undefined, prefectureNameB: undefined });
@@ -60,7 +61,20 @@ export function TestComponent() {
     setYoungRawDatas({label: "年少人口", dataA: undefined, dataB: undefined});
     setWorkingRawDatas({label: "生産年齢人口", dataA: undefined, dataB: undefined});
   };
-
+  const renderChart = () => {
+    switch (selectedCategory) {
+      case '総人口':
+        return <TotalChartBox prefectureNames={prefectureNames} labelAndRawDatas={totalRawDatas} />;
+      case '年少人口':
+        return <YoungChartBox prefectureNames={prefectureNames} labelAndRawDatas={youngRawDatas} />;
+      case '老年人口':
+        return <AgedChartBox prefectureNames={prefectureNames} labelAndRawDatas={agedRawDatas} />;
+      case '生産年齢人口':
+        return <WorkingChartBox prefectureNames={prefectureNames} labelAndRawDatas={workingRawDatas} />;
+      default:
+        return null;
+    }
+  };
   if (!prefectureNames.prefectureNameA && !prefectureNames.prefectureNameB) {
     return (
       <div>
@@ -73,12 +87,17 @@ export function TestComponent() {
   return (
     <div>
       <GroupCheckBox selectedPrefectures={selectedPrefectures} setSelectedPrefectures={setSelectedPrefectures} />
-      <div>
-      <button onClick={resetAll}>リセット</button>
-        <TotalChartBox prefectureNames={prefectureNames} labelAndRawDatas={totalRawDatas} />
-        <AgedChartBox prefectureNames={prefectureNames} labelAndRawDatas={agedRawDatas} />
-        <YoungChartBox prefectureNames={prefectureNames} labelAndRawDatas={youngRawDatas} />
-        <WorkingChartBox prefectureNames={prefectureNames} labelAndRawDatas={workingRawDatas} />
+      <div className='Button-wrap-center'>
+        <select onChange={(e) => setSelectedCategory(e.target.value)} value={selectedCategory} className='select-style'>
+          <option value="総人口">総人口</option>
+          <option value="年少人口">年少人口</option>
+          <option value="老年人口">老年人口</option>
+          <option value="生産年齢人口">生産年齢人口</option>
+        </select>
+        <button className='ResetButton' onClick={resetAll}>リセット</button>
+      </div>
+      <div className='Button-wrap-chart'>
+        {renderChart()}
       </div>
     </div>
   );

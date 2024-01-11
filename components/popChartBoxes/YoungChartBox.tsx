@@ -44,7 +44,7 @@ export const YoungChartBox = (
         };
     return (
             <div>
-                <div>{label}</div>
+                <div className='label'>{label}</div>
                 <ChartBox prefectureNames={prefectureNames} mainDatas={RawDatas}/>
             </div>
             )
