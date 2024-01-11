@@ -1,5 +1,4 @@
 "use client"
-// dataをfetchして、(各都道府県データ)個々のcheckboxに入れて表示
 import React, { useState, useEffect, useRef } from 'react';
 import { CheckBox } from './CheckBox';
 import { fetchPrefectures } from '@/lib/actions';
@@ -7,8 +6,6 @@ import { GroupCheckBoxProps, PrefectureData } from "@/lib/types";
 
 export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectures }: GroupCheckBoxProps) {
   const [data, setData] = useState<PrefectureData>({ statusCode: null, result: [], message: "" });
-  // const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
-  // useEffectでページが読み込まれるときに都道府県名をフェッチ
   useEffect(() => {
     const fetchData = async () => {
     try {
@@ -49,15 +46,12 @@ export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectu
   const handleCheckboxChange = (prefName: string, prefCode: number) => (checked: boolean) => {
     setSelectedPrefectures((prev) => {
       if (checked) {
-        // 配列の長さが2未満の場合のみ、新しい要素を追加
         if (prev.length < 2) {
           return [...prev, [prefName, prefCode]];
         } else {
-          // すでに2つの要素がある場合は、何も追加せずに現在の状態を維持
           return prev;
         }
       } else {
-        // チェックが解除された場合は、該当する要素を削除
         return prev.filter((name) => name[0] !== prefName);
       }
     });
@@ -68,7 +62,7 @@ export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectu
     if (data.statusCode) {
       return <div>{data.statusCode} {data.message}</div>;
     } else {
-    return <div>Loading...data else</div>; // データがロードされるまでの表示
+    return <div>Loading...data else</div>;
     }
   }
 
@@ -86,15 +80,3 @@ export default function GroupCheckBox({ selectedPrefectures, setSelectedPrefectu
     </div>
   );
 }
-/*
-export default async function GroupCheckBox() {
-    const data: PrefectureData = await fetchPrefectures();
-    return (
-    <div className="GroupCheckBox">
-      {data.result.map((prefecture) => (
-        <CheckBox key={prefecture.prefCode} prefectureName={prefecture.prefName} />
-      ))}
-    </div>
-    )
-  }
-*/
