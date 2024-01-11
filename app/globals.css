@@ -1,9 +1,9 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 255, 255, 255;
@@ -38,7 +38,6 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
-  
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,7 +46,10 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
 
-    --primary-glow: radial-gradient(rgba(238, 50, 50, 0.4), rgba(227, 232, 238, 0));
+    --primary-glow: radial-gradient(
+      rgba(238, 50, 50, 0.4),
+      rgba(227, 232, 238, 0)
+    );
     --secondary-glow: linear-gradient(
       to bottom right,
       rgba(1, 65, 255, 0),
@@ -168,7 +170,7 @@ a {
   width: 150px;
   margin: 50px 0px 50px 160px;
 
-  border:solid 2px #000000;
+  border: solid 2px #000000;
   border-radius: 8px; /* 角丸にする */
   color: #000;
 }
@@ -210,10 +212,10 @@ a {
   top: 1px;
   left: 5px;
   display: block;
-  border-right: 2px solid rgb(255, 255, 255); 
-  border-bottom: 2px solid rgb(255, 255, 255); 
-  content: '';
-  width: 5px; 
+  border-right: 2px solid rgb(255, 255, 255);
+  border-bottom: 2px solid rgb(255, 255, 255);
+  content: "";
+  width: 5px;
   height: 10px;
   transform: rotate(45deg);
 }
@@ -244,7 +246,6 @@ a {
   cursor: not-allowed; /* カーソルを禁止マークに変更 */
 }
 
-
 .MessageInSelectedPrefecture {
   margin-top: 100px;
   margin-bottom: 100px;
@@ -265,7 +266,7 @@ a {
 }
 
 .ResetButton {
-  background-color: #4CAF50; /* 緑色の背景 */
+  background-color: #4caf50; /* 緑色の背景 */
   color: white; /* 白色のテキスト */
   padding: 15px 32px; /* 上下と左右のパディング */
   text-align: center; /* テキストを中央寄せ */
@@ -310,7 +311,7 @@ a {
 .select-style:focus {
   outline: none;
   border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .select-style:hover {
@@ -366,7 +367,7 @@ a {
   }
   /* ResetButtonをスマートフォン用に調整 */
   .ResetButton {
-    background-color: #4CAF50; /* 緑色の背景 */
+    background-color: #4caf50; /* 緑色の背景 */
     color: white; /* 白色のテキスト */
     padding: 10px 20px; /* 上下と左右のパディングを調整 */
     text-align: center; /* テキストを中央寄せ */
@@ -416,7 +417,7 @@ a {
   .select-style:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 0 0.1rem rgba(0,123,255,.25); /* フォーカス時の影を調整 */
+    box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25); /* フォーカス時の影を調整 */
   }
 
   .select-style:hover {
@@ -431,5 +432,4 @@ a {
     text-align: center;
     margin: 10px; /* 同上 */
   }
-
 }
