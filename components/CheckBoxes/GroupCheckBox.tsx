@@ -2,21 +2,21 @@
 import React, { useState, useEffect, useRef } from "react";
 import { CheckBox } from "./CheckBox";
 import { fetchPrefectures } from "@/lib/actions";
-import { GroupCheckBoxProps, PrefectureData } from "@/lib/types";
+import { GroupCheckBoxProps, PrefectureNameDatas } from "@/lib/types";
 
 export default function GroupCheckBox({
   selectedPrefectures,
   setSelectedPrefectures,
 }: GroupCheckBoxProps) {
-  const [data, setData] = useState<PrefectureData>({
+  const [data, setData] = useState<PrefectureNameDatas>({
     statusCode: null,
     result: [],
-    message: "",
+    message: null,
   });
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchPrefectureNames = async () => {
       try {
-        const fetchedData: PrefectureData = await fetchPrefectures();
+        const fetchedData: PrefectureNameDatas = await fetchPrefectures();
         console.log(fetchedData.message);
         setData(fetchedData);
         if (data.message) {
@@ -28,7 +28,7 @@ export default function GroupCheckBox({
         console.log("fetchData has been executed, it's finally.");
       }
     };
-    fetchData();
+    fetchPrefectureNames();
   }, []);
 
   // for debugging

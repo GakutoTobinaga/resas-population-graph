@@ -11,8 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { PrefectureNames } from "@/lib/types"; // Replace with your actual import path
-import { RawDataPair } from "./popChartBoxes/YoungChartBox";
-
+import { RawDataPair } from "@/lib/types";
 ChartJS.register(
   CategoryScale,
   LinearScale,

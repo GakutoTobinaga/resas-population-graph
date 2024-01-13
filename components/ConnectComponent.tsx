@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import GroupCheckBox from "@/components/CheckBoxes/GroupCheckBox";
 import { fetchPopulationDataByPref } from "@/lib/actions";
 import { PrefecturePopulationData, PrefectureNames, LabelAndRawDatas } from "@/lib/types";
-import { SampleChartBox } from "./popChartBoxes/SampleChartBox";
+import { SampleChartBox } from "./ChartBoxes/PopulationChartWrapper";
 
 export function ConnectComponent() {
   const [selectedCategory, setSelectedCategory] = useState("総人口");
