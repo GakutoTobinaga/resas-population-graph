@@ -11,7 +11,7 @@ const Navbar = dynamic(() => import("@/components/Navbar"), {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rpg app",
+  title: "Resas-population-graph App",
   description: "Displaying populations of each prefectures.",
 };
 

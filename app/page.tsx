@@ -1,7 +1,7 @@
 "use client";
 import styles from "./page.module.css";
 import { useState } from "react";
-import TestComponent from "@/components/ConnectComponent";
+import ConnectComponent from "@/components/ConnectComponent";
 
 export default function Home() {
   const [selectedPrefectures, setSelectedPrefectures] = useState<
@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
-        <TestComponent />
+        <ConnectComponent />
       </div>
     </main>
   );

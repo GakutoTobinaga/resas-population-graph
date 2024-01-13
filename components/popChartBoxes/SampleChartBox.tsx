@@ -35,20 +35,24 @@ type PrefecturePopulationData = {
     data: PopulationCategory[];
   };
 };
+
 export type RawDataPair = {
   dataA: PopulationData[] | undefined;
   dataB: PopulationData[] | undefined;
 };
 
-export const WorkingChartBox = ({
+export const SampleChartBox = ({
   prefectureNames,
   labelAndRawDatas,
+  label,
 }: {
   prefectureNames: PrefectureNames;
   labelAndRawDatas: LabelAndRawDatas | undefined;
+  label: string;
 }) => {
+  console.log(labelAndRawDatas);
   if (prefectureNames && labelAndRawDatas) {
-    const label: string = "生産年齢人口";
+    // const label: string = "年少人口";
     const RawDatas: RawDataPair = {
       dataA: labelAndRawDatas.dataA?.data,
       dataB: labelAndRawDatas.dataB?.data,
@@ -62,7 +66,7 @@ export const WorkingChartBox = ({
   } else {
     return (
       <div>
-        <div>WorkingChartBox is undefined.</div>
+        <div>{label} Chart Box is undefined.</div>
       </div>
     );
   }

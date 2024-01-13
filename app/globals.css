@@ -203,7 +203,7 @@ a {
 /* Checked state */
 .CheckBox input[type="checkbox"]:checked {
   background-color: #000;
-  border-color: #fff;
+  border-color: #000;
 }
 
 .CheckBox input[type="checkbox"]:checked::after {
@@ -241,8 +241,7 @@ a {
 }
 
 .Checkbox-disabled {
-  background-color: #ccc; /* 灰色 */
-  color: #666; /* 文字色も変更する場合 */
+  color: #959595; /* 文字色も変更 */
   cursor: not-allowed; /* カーソルを禁止マークに変更 */
 }
 
@@ -279,8 +278,11 @@ a {
   border-radius: 8px; /* 角を丸く */
 }
 
+
 .ResetButton:hover {
   background-color: #45a049; /* ホバー時の背景色を少し暗く */
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
 .Button-wrap-center {

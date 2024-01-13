@@ -46,7 +46,7 @@ export type PrefectureDatas = {
 };
 
 export type LabelAndRawDatas = {
-  label: string | undefined;
+  label: string
   dataA: PopulationCategory | undefined;
   dataB: PopulationCategory | undefined;
 };
