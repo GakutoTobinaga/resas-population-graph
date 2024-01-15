@@ -39,7 +39,7 @@ export const ChartBox = ({
       const valuesA = years.map(
         (year) =>
           mainDatas.dataA?.find((data) => data.year === year)?.value ?? null,
-      );
+     );
       newDatasets.push({
         label: prefectureNames.prefectureNameA,
         backgroundColor: "rgba(255, 99, 132, 0.2)",

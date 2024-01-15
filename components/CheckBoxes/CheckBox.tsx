@@ -6,6 +6,7 @@ type CheckBoxProps = {
   disabled: boolean;
   checked: boolean;
 };
+
 export const CheckBox: React.FC<CheckBoxProps> = ({
   prefectureName,
   onChange,
@@ -17,6 +18,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({
     <div className={className}>
       <input
         type="checkbox"
+        name="prefectureCheckbox"
         onChange={(e) => onChange(e.target.checked)}
         disabled={disabled}
         checked={checked}

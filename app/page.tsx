@@ -1,16 +1,17 @@
-"use client";
-import styles from "./page.module.css";
-import { useState } from "react";
 import ConnectComponent from "@/components/ConnectComponent";
+import dynamic from "next/dynamic";
 
+const PrefectureTile = dynamic(() => import("@/components/PrefectureTile"), {
+  ssr: false, // サーバーサイドでのレンダリングを無効にする
+});
 export default function Home() {
-  const [selectedPrefectures, setSelectedPrefectures] = useState<
-    [string, number][]
-  >([]);
 
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
+    <main>
+      <div>
+        <PrefectureTile/>
+      </div>
+      <div className="main">
         <ConnectComponent />
       </div>
     </main>

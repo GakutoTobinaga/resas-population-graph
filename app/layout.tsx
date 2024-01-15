@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import PrefectureTile from "@/components/PrefectureTile";
+import { PrefectureProvider } from "@/contexts/PrefectureProvider";
+import ConnectComponent from "@/components/ConnectComponent";
 
-const Navbar = dynamic(() => import("@/components/Navbar"), {
+const Titlebar = dynamic(() => import("@/components/Titlebar"), {
   ssr: false, // サーバーサイドでのレンダリングを無効にする
 });
 
@@ -23,9 +24,14 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <Navbar />
-        <PrefectureTile />
-        <main className={inter.className}>{children}</main>
+        <header>
+          <Titlebar />
+        </header>
+        <main className={inter.className}>
+          <PrefectureProvider>
+            {children}
+          </PrefectureProvider>
+        </main>
       </body>
     </html>
   );

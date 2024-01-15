@@ -12,7 +12,7 @@ export const SampleChartBox = ({
   labelAndRawDatas: LabelAndRawDatas | undefined;
   label: string;
 }) => {
-  if (prefectureNames && labelAndRawDatas) {
+  if (labelAndRawDatas) {
     const RawDatas: RawDataPair = {
       dataA: labelAndRawDatas.dataA?.data,
       dataB: labelAndRawDatas.dataB?.data,
