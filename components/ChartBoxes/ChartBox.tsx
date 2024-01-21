@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -11,8 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import { PrefectureNames } from "@/lib/types"; // Replace with your actual import path
-import { RawDataPair } from "./popChartBoxes/YoungChartBox";
-
+import { RawDataPair } from "@/lib/types";
 ChartJS.register(
   CategoryScale,
   LinearScale,

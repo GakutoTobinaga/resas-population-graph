@@ -3,9 +3,9 @@ export type Prefecture = {
   prefName: string;
 };
 
-export type PrefectureData = {
-  statusCode: any;
-  message: null | string;
+export type PrefectureNameDatas = {
+  statusCode: number | null;
+  message: null;
   result: Prefecture[];
 };
 
@@ -46,7 +46,12 @@ export type PrefectureDatas = {
 };
 
 export type LabelAndRawDatas = {
-  label: string | undefined;
+  label: string;
   dataA: PopulationCategory | undefined;
   dataB: PopulationCategory | undefined;
+};
+
+export type RawDataPair = {
+  dataA: PopulationData[] | undefined;
+  dataB: PopulationData[] | undefined;
 };
