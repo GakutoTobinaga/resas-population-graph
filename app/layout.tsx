@@ -25,9 +25,7 @@ export default function RootLayout({
         <header>
           <Titlebar />
         </header>
-        <main className={inter.className}>
-          {children}
-        </main>
+        <main className={inter.className}>{children}</main>
       </body>
     </html>
   );
