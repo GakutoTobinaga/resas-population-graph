@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Line } from "react-chartjs-2";
 import {
@@ -45,7 +45,7 @@ export const ChartBox = ({
         label: prefectureNames.prefectureNameA,
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(0, 175, 240)",
-        borderWidth: 3,
+        borderWidth: 4,
         hoverBackgroundColor: "rgba(255, 99, 132, 0.4)",
         hoverBorderColor: "rgba(255, 99, 132, 1)",
         data: valuesA,
@@ -60,8 +60,8 @@ export const ChartBox = ({
       newDatasets.push({
         label: prefectureNames.prefectureNameB,
         backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(100, 0, 240)",
-        borderWidth: 3,
+        borderColor: "rgba(255, 0, 0)",
+        borderWidth: 4,
         hoverBackgroundColor: "rgba(255, 99, 132, 0.4)",
         hoverBorderColor: "rgba(255, 99, 132, 1)",
         data: valuesB,

@@ -4,13 +4,13 @@ import { CheckBox } from "./CheckBox";
 import { fetchPrefectures } from "@/lib/actions";
 import { GroupCheckBoxProps, PrefectureNameDatas } from "@/lib/types";
 import { Loading } from "../Loading";
-import ErrorMsg from "../ErrorMsg";
 
 export default function GroupCheckBox({
   selectedPrefectures,
   setSelectedPrefectures,
 }: GroupCheckBoxProps) {
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<PrefectureNameDatas>({
     statusCode: null,
     result: [],
@@ -19,11 +19,13 @@ export default function GroupCheckBox({
   useEffect(() => {
     const fetchPrefectureNames = async () => {
       try {
+        setIsLoading(true);
         const fetchedData: PrefectureNameDatas = await fetchPrefectures();
         setData(fetchedData);
       } catch (error) {
         setIsError(true);
       } finally {
+        setIsLoading(false);
       }
     };
     fetchPrefectureNames();
@@ -44,10 +46,14 @@ export default function GroupCheckBox({
       });
     };
 
-  if (!data || !data.result) {
+  if (isError) {
+    return (
+      <div>都道府県のデータの取得に失敗しました。再試行してください。</div>
+    );
+  }
+  if (isLoading) {
     return <Loading />;
   }
-
   return (
     <div className="GroupCheckBox">
       {data.result.map((prefecture) => (

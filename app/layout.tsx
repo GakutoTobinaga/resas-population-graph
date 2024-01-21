@@ -2,11 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import { PrefectureProvider } from "@/contexts/PrefectureProvider";
-import ConnectComponent from "@/components/ConnectComponent";
 
 const Titlebar = dynamic(() => import("@/components/Titlebar"), {
-  ssr: false, // サーバーサイドでのレンダリングを無効にする
+  ssr: false,
 });
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,7 +26,7 @@ export default function RootLayout({
           <Titlebar />
         </header>
         <main className={inter.className}>
-          <PrefectureProvider>{children}</PrefectureProvider>
+          {children}
         </main>
       </body>
     </html>

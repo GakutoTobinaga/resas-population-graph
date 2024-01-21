@@ -55,29 +55,27 @@
     border-bottom: 2px solid #fff;
   }
   .PrefectureTile {
-    color: #fff; /* テキストの色を白に */
-    background-color: #fff; /* 背景色を暗く */
-    border-color: #444; /* ボーダーの色を少し明るい暗色に */
-    /* 他の必要なスタイル変更 */
+    color: #fff;
+    background-color: #fff;
+    border-color: #444;
   }
   .CheckBox {
-    color: #fff; /* テキストの色を白に */
-    /* 他の必要なスタイル変更 */
+    color: #fff;
   }
 
   .CheckBox input[type="checkbox"] {
-    border: 2px solid #fff; /* ダークモードでのボーダー色 */
-    background-color: #333; /* ダークモードでの背景色 */
+    border: 2px solid #fff;
+    background-color: #333;
   }
 
   .CheckBox input[type="checkbox"]:checked {
-    background-color: #555; /* ダークモードでチェックされた時の背景色 */
-    border-color: #fff; /* ダークモードでチェックされた時のボーダー色 */
+    background-color: #555;
+    border-color: #fff;
   }
 
   .CheckBox input[type="checkbox"]:checked::after {
-    border-right: 2px solid #fff; /* ダークモードでチェックマークの色 */
-    border-bottom: 2px solid #fff; /* ダークモードでチェックマークの色 */
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
   }
   .select-style {
     color: #000;
@@ -87,7 +85,37 @@
     border-radius: 4px;
     background-color: white;
     cursor: pointer;
-    margin: 4px 2px; /* 外側のマージン */
+    margin: 4px 2px;
+  }
+  .ErrorMsg {
+    font-size: 20px;
+    margin: auto;
+    padding: auto;
+  }
+}
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
@@ -149,21 +177,20 @@ a {
   margin-left: 10%;
 
   border: solid 2px #000000;
-  border-radius: 8px; /* 角丸にする */
+  border-radius: 8px;
 }
 
 .CheckBox {
   font-size: 30px;
   align-items: center;
   margin-bottom: 10px;
-  position: relative; /* Ensure the container has a relative position */
+  position: relative;
 }
 
 .CheckBox input {
   margin-right: 10px;
 }
 
-/* Normal, unchecked state */
 .CheckBox input[type="checkbox"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -174,10 +201,9 @@ a {
   border-radius: 0px;
   outline: none;
   margin-right: 8px;
-  position: relative; /* Adding relative positioning */
+  position: relative;
 }
 
-/* Checked state */
 .CheckBox input[type="checkbox"]:checked {
   background-color: #000;
   border-color: #000;
@@ -197,7 +223,6 @@ a {
   transform: rotate(45deg);
 }
 
-/* Checkbox label text */
 .CheckBox label {
   display: flex;
   align-items: center;
@@ -209,18 +234,18 @@ a {
   max-width: var(--max-width);
   display: flex;
   flex-wrap: wrap;
-  gap: 10px; /* 間隔を設定 */
-  justify-content: center; /* これで要素を中央に揃えます */
+  gap: 10px;
+  justify-content: center;
 }
 
 .CheckBox {
-  flex: 1 0 22%; /* 同上 */
-  margin: 5px; /* 同上 */
+  flex: 1 0 22%;
+  margin: 5px;
 }
 
 .Checkbox-disabled {
-  color: #959595; /* 文字色も変更 */
-  cursor: not-allowed; /* カーソルを禁止マークに変更 */
+  color: #959595;
+  cursor: not-allowed;
 }
 
 .MsgForUser {
@@ -239,7 +264,7 @@ a {
   display: flex;
   align-items: center;
   text-align: center;
-  margin: 10px; /* 同上 */
+  margin: 10px;
 }
 
 .ResetButton {
@@ -297,7 +322,6 @@ a {
   border-color: #007bff;
 }
 
-/* スマートフォン向けのスタイル */
 @media (max-width: 768px) {
   body {
     font-size: 16px;
@@ -366,10 +390,10 @@ a {
   }
 
   .Button-wrap-center {
-    margin-top: 20px; /* 上部のマージンを調整 */
-    margin-bottom: 20px; /* 下部のマージンを調整 */
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-family: "Gill Sans", sans-serif;
-    font-size: 24px; /* フォントサイズを調整 */
+    font-size: 24px;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -407,7 +431,7 @@ a {
     display: flex;
     align-items: center;
     text-align: center;
-    margin: 10px; /* 同上 */
+    margin: 10px;
   }
 }
 .main {

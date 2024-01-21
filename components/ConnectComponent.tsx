@@ -7,12 +7,12 @@ import {
   PrefectureNames,
   LabelAndRawDatas,
 } from "@/lib/types";
-import { SampleChartBox } from "./ChartBoxes/PopulationChartWrapper";
+import { ChartBoxWrapper } from "./ChartBoxes/PopulationChartWrapper";
 import dynamic from "next/dynamic";
 
 export function ConnectComponent() {
   const MsgForUser = dynamic(() => import("./MsgForUser"), {
-    ssr: false, // サーバーサイドでのレンダリングを無効にする
+    ssr: false,
   });
   const [selectedCategory, setSelectedCategory] = useState("総人口");
   const [selectedPrefectures, setSelectedPrefectures] = useState<
@@ -24,7 +24,6 @@ export function ConnectComponent() {
     prefectureNameB: undefined,
   });
 
-  // chartの名前を設定する
   const [totalRawDatas, setTotalRawDatas] = useState<LabelAndRawDatas>({
     label: "総人口",
     dataA: undefined,
@@ -51,16 +50,7 @@ export function ConnectComponent() {
       let A: number | undefined = undefined;
       let B: number | undefined = undefined;
       if (selectedPrefectures.length == 1) {
-        A = selectedPrefectures[0][1]; // 1番目の都道府県コード
-        // カテゴリラベルとデータをセットする関数
-        /*
-        const setLabelAndData = (label: string, data: any, setDataFunction: any) => {
-          setDataFunction((prevData : any) => ({
-            ...prevData,
-            [data]: data.result.data.find((category : any) => category.label === label),
-          }));
-        };
-        */
+        A = selectedPrefectures[0][1];
         setPrefectureNames((prevNames) => ({
           ...prevNames,
           prefectureNameA: selectedPrefectures[0][0],
@@ -94,7 +84,7 @@ export function ConnectComponent() {
           ),
         }));
       } else if (selectedPrefectures.length >= 2) {
-        B = selectedPrefectures[1][1]; // 2番目の都道府県コード
+        B = selectedPrefectures[1][1];
         setPrefectureNames((prevNames) => ({
           ...prevNames,
           prefectureNameB: selectedPrefectures[1][0],
@@ -166,7 +156,7 @@ export function ConnectComponent() {
     switch (selectedCategory) {
       case "総人口":
         return (
-          <SampleChartBox
+          <ChartBoxWrapper
             prefectureNames={prefectureNames}
             labelAndRawDatas={totalRawDatas}
             label={totalRawDatas.label}
@@ -174,7 +164,7 @@ export function ConnectComponent() {
         );
       case "年少人口":
         return (
-          <SampleChartBox
+          <ChartBoxWrapper
             prefectureNames={prefectureNames}
             labelAndRawDatas={youngRawDatas}
             label={youngRawDatas.label}
@@ -182,7 +172,7 @@ export function ConnectComponent() {
         );
       case "老年人口":
         return (
-          <SampleChartBox
+          <ChartBoxWrapper
             prefectureNames={prefectureNames}
             labelAndRawDatas={agedRawDatas}
             label={agedRawDatas.label}
@@ -190,7 +180,7 @@ export function ConnectComponent() {
         );
       case "生産年齢人口":
         return (
-          <SampleChartBox
+          <ChartBoxWrapper
             prefectureNames={prefectureNames}
             labelAndRawDatas={workingRawDatas}
             label={workingRawDatas.label}

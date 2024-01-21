@@ -3,7 +3,7 @@ import React from "react";
 import { PrefectureNames, LabelAndRawDatas, RawDataPair } from "@/lib/types";
 import { ChartBox } from "./ChartBox";
 
-export const SampleChartBox = ({
+export const ChartBoxWrapper = ({
   prefectureNames,
   labelAndRawDatas,
   label,
@@ -26,7 +26,7 @@ export const SampleChartBox = ({
   } else {
     return (
       <div>
-        <div>Data is undefined.</div>
+        <div className="ErrorMsg">Data is undefined.</div>
       </div>
     );
   }

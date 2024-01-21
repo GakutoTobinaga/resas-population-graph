@@ -2,7 +2,7 @@ import ConnectComponent from "@/components/ConnectComponent";
 import dynamic from "next/dynamic";
 
 const PrefectureTile = dynamic(() => import("@/components/PrefectureTile"), {
-  ssr: false, // サーバーサイドでのレンダリングを無効にする
+  ssr: false,
 });
 export default function Home() {
   return (
