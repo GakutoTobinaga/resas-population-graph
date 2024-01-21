@@ -5,11 +5,10 @@ const PrefectureTile = dynamic(() => import("@/components/PrefectureTile"), {
   ssr: false, // サーバーサイドでのレンダリングを無効にする
 });
 export default function Home() {
-
   return (
     <main>
       <div>
-        <PrefectureTile/>
+        <PrefectureTile />
       </div>
       <div className="main">
         <ConnectComponent />

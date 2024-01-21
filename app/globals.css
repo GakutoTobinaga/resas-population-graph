@@ -45,7 +45,6 @@
     --foreground-rgb: 240, 240, 240;
     --background-start-rgb: #252525;
     --background-end-rgb: #252525;
-  
 
     --callout-rgb: 20, 20, 20;
     --callout-border-rgb: 108, 108, 108;
@@ -247,19 +246,18 @@ a {
   background-color: #4caf50;
   color: white;
   padding: 15px 32px;
-  text-align: center; /* テキストを中央寄せ */
-  text-decoration: none; /* テキストの装飾をなしに */
-  display: inline-block; /* インラインブロック要素として表示 */
-  font-size: 16px; /* フォントサイズ */
-  margin: 4px 2px; /* 外側のマージン */
-  cursor: pointer; /* カーソルをポインターに */
-  border: none; /* 枠線なし */
-  border-radius: 8px; /* 角を丸く */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
 }
 
-
 .ResetButton:hover {
-  background-color: #45a049; /* ホバー時の背景色を少し暗く */
+  background-color: #45a049;
   border-color: #007bff;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
@@ -286,7 +284,7 @@ a {
   border-radius: 4px;
   background-color: white;
   cursor: pointer;
-  margin: 4px 2px; /* 外側のマージン */
+  margin: 4px 2px;
 }
 
 .select-style:focus {
@@ -301,40 +299,41 @@ a {
 
 /* スマートフォン向けのスタイル */
 @media (max-width: 768px) {
-  /* ここにスマートフォン向けのスタイルを追加 */
   body {
-    font-size: 16px; /* フォントサイズを調整 */
+    font-size: 16px;
   }
 
   .Titlebar {
-    height: 60px; /* バーの高さを調整 */
-    font-size: 24px; /* ナビゲーションバーのフォントサイズを調整 */
-    margin-bottom: 20px; /* ナビゲーションバーとコンテンツの間隔を調整 */
+    height: 60px;
+    font-size: 24px;
+    margin-bottom: 20px;
   }
 
   .PrefectureTile {
-    font-size: 20px; /* プレフェクチャータイルのフォントサイズを調整 */
-    width: 30%; /* 幅を100%に設定して、スマートフォンの画面に合わせる */
-    margin: 20px 0; /* プレフェクチャータイルの上下のマージンを調整 */
+    font-size: 20px;
+    width: 25%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 10px;
     justify-content: center;
   }
 
   .CheckBox {
-    font-size: 18px; /* チェックボックスのフォントサイズを調整 */
-    margin-bottom: 20px; /* チェックボックスと次の要素の間隔を調整 */
+    font-size: 18px;
+    margin-bottom: 20px;
   }
 
   .ResetButton {
-    font-size: 20px; /* リセットボタンのフォントサイズを調整 */
+    font-size: 20px;
   }
 
   .Button-wrap-center,
   .Button-wrap-chart {
-    margin: 20px 0; /* ボタンラップの上下のマージンを調整 */
+    margin: 20px 0;
   }
 
   .select-style {
-    font-size: 16px; /* セレクトボックスのフォントサイズを調整 */
+    font-size: 16px;
   }
 
   .MessageInSelectedPrefecture {
@@ -346,27 +345,26 @@ a {
     text-align: center;
     justify-content: center;
   }
-  /* ResetButtonをスマートフォン用に調整 */
+
   .ResetButton {
-    background-color: #4caf50; /* 緑色の背景 */
-    color: white; /* 白色のテキスト */
-    padding: 10px 20px; /* 上下と左右のパディングを調整 */
-    text-align: center; /* テキストを中央寄せ */
-    text-decoration: none; /* テキストの装飾をなしに */
-    display: inline-block; /* インラインブロック要素として表示 */
-    font-size: 18px; /* フォントサイズを調整 */
-    margin: 10px 0; /* 上下のマージンを調整 */
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 10px 0;
     margin-left: 10px;
-    cursor: pointer; /* カーソルをポインターに */
-    border: none; /* 枠線なし */
-    border-radius: 8px; /* 角を丸く */
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
   }
 
   .ResetButton:hover {
-    background-color: #45a049; /* ホバー時の背景色を少し暗く */
+    background-color: #45a049;
   }
 
-  /* Button-wrap-centerをスマートフォン用に調整 */
   .Button-wrap-center {
     margin-top: 20px; /* 上部のマージンを調整 */
     margin-bottom: 20px; /* 下部のマージンを調整 */
@@ -377,28 +375,26 @@ a {
     justify-content: center;
   }
 
-  /* Button-wrap-chartをスマートフォン用に調整 */
   .Button-wrap-chart {
-    margin-top: 20px; /* 上部のマージンを調整 */
-    margin-bottom: 40px; /* 下部のマージンを調整 */
+    margin-top: 20px;
+    margin-bottom: 40px;
   }
 
-  /* select-styleをスマートフォン用に調整 */
   .select-style {
-    padding: 10px 15px; /* 上下のパディングを調整 */
-    font-size: 16px; /* フォントサイズを調整 */
+    padding: 10px 15px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: white;
     cursor: pointer;
-    margin: 10px 0; /* 上下のマージンを調整 */
+    margin: 10px 0;
     margin-right: 10px;
   }
 
   .select-style:focus {
     outline: none;
     border-color: #007bff;
-    box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25); /* フォーカス時の影を調整 */
+    box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
   }
 
   .select-style:hover {

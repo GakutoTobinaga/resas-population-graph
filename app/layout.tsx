@@ -28,9 +28,7 @@ export default function RootLayout({
           <Titlebar />
         </header>
         <main className={inter.className}>
-          <PrefectureProvider>
-            {children}
-          </PrefectureProvider>
+          <PrefectureProvider>{children}</PrefectureProvider>
         </main>
       </body>
     </html>

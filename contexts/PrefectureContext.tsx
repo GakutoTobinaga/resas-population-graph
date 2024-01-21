@@ -1,6 +1,8 @@
-import React from 'react';
-import { PrefectureContextType } from './PrefectureContextTypes';
+import React from "react";
+import { PrefectureContextType } from "./PrefectureContextTypes";
 
-const PrefectureContext = React.createContext<PrefectureContextType | undefined>(undefined);
+const PrefectureContext = React.createContext<
+  PrefectureContextType | undefined
+>(undefined);
 
 export default PrefectureContext;

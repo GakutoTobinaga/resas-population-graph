@@ -1,25 +1,28 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import GroupCheckBox from "@/components/CheckBoxes/GroupCheckBox";
 import { fetchPopulationDataByPref } from "@/lib/actions";
-import { PrefecturePopulationData, PrefectureNames, LabelAndRawDatas } from "@/lib/types";
+import {
+  PrefecturePopulationData,
+  PrefectureNames,
+  LabelAndRawDatas,
+} from "@/lib/types";
 import { SampleChartBox } from "./ChartBoxes/PopulationChartWrapper";
 import dynamic from "next/dynamic";
-import PrefectureContext from "@/contexts/PrefectureContext";
 
 export function ConnectComponent() {
   const MsgForUser = dynamic(() => import("./MsgForUser"), {
     ssr: false, // サーバーサイドでのレンダリングを無効にする
   });
   const [selectedCategory, setSelectedCategory] = useState("総人口");
-  const [selectedPrefectures, setSelectedPrefectures] = useState<[string, number][]>([]);
-  // useContextを使用してPrefectureContextから状態を取得
-  // const { prefectureNames1, setPrefectureNames1 } = useContext(PrefectureContext);
+  const [selectedPrefectures, setSelectedPrefectures] = useState<
+    [string, number][]
+  >([]);
 
   const [prefectureNames, setPrefectureNames] = useState<PrefectureNames>({
-      prefectureNameA: undefined,
-      prefectureNameB: undefined,
-    });
+    prefectureNameA: undefined,
+    prefectureNameB: undefined,
+  });
 
   // chartの名前を設定する
   const [totalRawDatas, setTotalRawDatas] = useState<LabelAndRawDatas>({
@@ -43,7 +46,6 @@ export function ConnectComponent() {
     dataB: undefined,
   });
 
-
   useEffect(() => {
     const fetchData = async () => {
       let A: number | undefined = undefined;
@@ -64,6 +66,7 @@ export function ConnectComponent() {
           prefectureNameA: selectedPrefectures[0][0],
           prefectureNameB: undefined,
         }));
+
         const dataA: PrefecturePopulationData =
           await fetchPopulationDataByPref(A);
         setTotalRawDatas((prevNames) => ({
@@ -90,8 +93,7 @@ export function ConnectComponent() {
             (category) => category.label === workingRawDatas.label,
           ),
         }));
-      }
-      else if (selectedPrefectures.length >= 2) {
+      } else if (selectedPrefectures.length >= 2) {
         B = selectedPrefectures[1][1]; // 2番目の都道府県コード
         setPrefectureNames((prevNames) => ({
           ...prevNames,
@@ -134,28 +136,25 @@ export function ConnectComponent() {
   }, [selectedPrefectures]);
 
   const resetAll = () => {
-    const resetRawDatas = (setFunction : Function) => {
-
-    };
     setSelectedPrefectures([]);
     setPrefectureNames({
       prefectureNameA: undefined,
       prefectureNameB: undefined,
     });
-    setTotalRawDatas({ 
-      label: "総人口", 
-      dataA: undefined, 
-      dataB: undefined
+    setTotalRawDatas({
+      label: "総人口",
+      dataA: undefined,
+      dataB: undefined,
     });
-    setAgedRawDatas({ 
+    setAgedRawDatas({
       label: "老年人口",
       dataA: undefined,
-      dataB: undefined
+      dataB: undefined,
     });
-    setYoungRawDatas({ 
-      label: "年少人口", 
-      dataA: undefined, 
-      dataB: undefined 
+    setYoungRawDatas({
+      label: "年少人口",
+      dataA: undefined,
+      dataB: undefined,
     });
     setWorkingRawDatas({
       label: "生産年齢人口",
@@ -203,15 +202,15 @@ export function ConnectComponent() {
   };
 
   if (!prefectureNames.prefectureNameA && !prefectureNames.prefectureNameB) {
-      return (
-        <div>
-          <GroupCheckBox
-            selectedPrefectures={selectedPrefectures}
-            setSelectedPrefectures={setSelectedPrefectures}
-          />
-          <MsgForUser/>
-        </div>
-      );
+    return (
+      <div>
+        <GroupCheckBox
+          selectedPrefectures={selectedPrefectures}
+          setSelectedPrefectures={setSelectedPrefectures}
+        />
+        <MsgForUser />
+      </div>
+    );
   }
 
   return (

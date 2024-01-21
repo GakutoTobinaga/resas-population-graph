@@ -22,30 +22,30 @@ export default function GroupCheckBox({
         const fetchedData: PrefectureNameDatas = await fetchPrefectures();
         setData(fetchedData);
       } catch (error) {
-        setIsError(true)
+        setIsError(true);
       } finally {
       }
     };
     fetchPrefectureNames();
   }, []);
 
+  const handleCheckboxChange =
+    (prefName: string, prefCode: number) => (checked: boolean) => {
+      setSelectedPrefectures((prev) => {
+        const alreadySelected = prev.some((item) => item[0] === prefName);
 
-  const handleCheckboxChange = (prefName: string, prefCode: number) => (checked: boolean) => {
-    setSelectedPrefectures((prev) => {
-      const alreadySelected = prev.some((item) => item[0] === prefName);
-  
-      if (checked && prev.length < 2 && !alreadySelected) {
-        return [...prev, [prefName, prefCode]];
-      } else if (!checked && alreadySelected) {
-        return prev.filter((item) => item[0] !== prefName);
-      }
-  
-      return prev;
-    });
-  };
+        if (checked && prev.length < 2 && !alreadySelected) {
+          return [...prev, [prefName, prefCode]];
+        } else if (!checked && alreadySelected) {
+          return prev.filter((item) => item[0] !== prefName);
+        }
+
+        return prev;
+      });
+    };
 
   if (!data || !data.result) {
-      return <Loading/>
+    return <Loading />;
   }
 
   return (
